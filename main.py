@@ -10,6 +10,13 @@ def getInt(num):
         return -1
 
 
+def getFloat(num):
+    try:
+        return float(num)
+    except:
+        return -1
+
+
 def correctFormat(lst, inMax, acros):
     if len(lst) == 0: return False
     if len(lst) == 1: return getInt(lst[0]) == 0
@@ -21,6 +28,7 @@ def correctFormat(lst, inMax, acros):
         for j in range(1, len(s)):
             if getInt(s[j]) < 0: return False
     return True
+
 
 
 def countPass(lst, tot, sub, acros, subIns):
@@ -48,13 +56,13 @@ if __name__ == "__main__":
     maxIns = []
     print("Enter total pass score: ")
     x = input()
-    while float(x) < 0:
+    while getFloat(x) < 0:
         print("Please enter a positive number. ")
         print("Enter total pass score: ")
         x = input()
     print("Enter subject pass score: ")
     y = input()
-    while float(y) < 0:
+    while getFloat(y) < 0:
         print("Please enter a positive number. ")
         print("Enter subject pass score: ")
         y = input()
@@ -93,9 +101,8 @@ if __name__ == "__main__":
         print("Enter exam result: ")
         r = []
         while True:
-            try:
-                line = input()
-            except EOFError:
+            line = input()
+            if not line:
                 break
             r.append(line)
     print("Number of passers in the exam is: " + str(countPass(r, float(x), float(y), acronyms, subjectIns)))
