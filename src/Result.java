@@ -1,8 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Result {
     private ArrayList<Subject> subjects;
@@ -19,12 +16,13 @@ public class Result {
         this.totalPassScore = totalPassScore;
     }
     public void input(String input) {
-        String[] list = input.split("\r\n");
+        examinees = new ArrayList<>();
+        String[] list = input.split("\n");
         for (int i = 1; i < list.length; i++) {
             String[] vals = list[i].split(" ");
             HashMap<Subject, Double> scores = new HashMap<>();
             for (int j = 1; j < vals.length; j++) {
-                scores.put(subjects.get(j),Double.parseDouble(vals[j]));
+                scores.put(subjects. get(j-1),Double.parseDouble(vals[j]));
             }
             examinees.add(new Examinee(divisions.get(acronyms.indexOf(vals[0])),scores));
         }

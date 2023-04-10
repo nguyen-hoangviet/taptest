@@ -1,23 +1,18 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Division {
     private String name;
-    private List<Subject> subjects;
+    private ArrayList<Subject> subjects;
     private double passScore;
 
-    public Division(String name, List<Subject> subjects, double passScore) {
+    public Division(String name, ArrayList<Subject> subjects, double passScore) {
         this.name = name;
-        this.subjects = new ArrayList<Subject>(subjects);
+        this.subjects = subjects;
         this.passScore = passScore;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Subject> getSubjects() {
-        return new ArrayList<Subject>(subjects);
+    public ArrayList<Subject> getSubjects() {
+        return subjects;
     }
 
     public double getPassScore() {

@@ -1,16 +1,22 @@
 public class Validator {
     public Boolean validResult(String input, String acronyms, int[] maxIndexes) {
         try {
-            String[] list = input.split("\r\n");
-            if (list.length == 0) return false;
-            if (list.length == 1) return Integer.parseInt(list[0]) == 0;
-            if (list.length != Integer.getInteger(list[0]) + 1) return false;
-            for (String s : list) {
-                String[] line = s.split(" ");
-                if (line.length < 2 || line.length < maxIndexes[acronyms.indexOf(line[0])]) return false;
-                if (Integer.parseInt(line[0]) >= 0 || !acronyms.contains(line[0])) return false;
-                for (String l : line) {
-                    if (Double.parseDouble(l) < 0) return false;
+            String[] list = input.split("\n");
+            if (list.length == 0)
+                return false;
+            if (list.length == 1)
+                return Integer.parseInt(list[0]) == 0;
+            if (list.length != Integer.parseInt(list[0]) + 1)
+                return false;
+            for (int i = 1; i < list.length; i++) {
+                String[] line = list[i].split(" ");
+                if (line.length < 2 || line.length < maxIndexes[acronyms.indexOf(line[0])])
+                    return false;
+                if (getInt(line[0]) >= 0 || !acronyms.contains(line[0]))
+                    return false;
+                for (int j = 1; j < line.length; j++) {
+                    if (getFloat(line[j]) < 0)
+                        return false;
                 }
             }
             return true;
@@ -39,11 +45,12 @@ public class Validator {
     }
 
     public Boolean validAcronym(String input) {
-        if (input.length() == 1) return false;
+        if (input == null) return false;
+        if (input.length() != 1) return false;
         return input.charAt(0) >= 'a' && input.charAt(0) <= 'z';
     }
 
-    public Boolean validchoices(int[] choices) {
+    public Boolean validChoices(int[] choices) {
         return choices.length > 0;
     }
 
@@ -62,7 +69,7 @@ public class Validator {
             case 1:
                 return validName(input);
             case 2:
-                return validchoices(maxIndexes);
+                return validChoices(maxIndexes);
             case 3:
                 return validAcronym(input) && availableAcronym(input,acronyms);
             case 4:

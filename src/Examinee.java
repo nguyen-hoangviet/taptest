@@ -1,20 +1,19 @@
 import java.util.HashMap;
-import java.util.Map;
 
 public class Examinee {
-    private final Division division;
-    private final HashMap<Subject, Double> scores;
+    private Division division;
+    private HashMap<Subject, Double> scores;
 
-    public Examinee(Division division, Map<Subject, Double> scores) {
+    public Examinee(Division division, HashMap<Subject, Double> scores) {
         this.division = division;
-        this.scores = new HashMap<>(scores);
+        this.scores = scores;
     }
 
     public Division getDivision() {
         return division;
     }
 
-    public Map<Subject, Double> getScores() {
-        return new HashMap<>(scores);
+    public HashMap<Subject, Double> getScores() {
+        return scores;
     }
 }
